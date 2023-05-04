@@ -28,10 +28,8 @@ public class MeterDataScheduled {
 
     @Scheduled(every="1s")     
     void increment() {
-        MeterData meterDdata =  meterDataService.getMeterDataAsync().await().atMost(Duration.ofSeconds(1));
+        MeterDataDto meterDdata =  meterDataService.getMeterDataAsync().map(meterDataMapper::toResource).await().atMost(Duration.ofSeconds(1));
         LOG.info(meterDdata.active_power_w);
-        MeterDataDto meterDdataDto = meterDataMapper.toResource(meterDdata);
-
     }
 
 }
