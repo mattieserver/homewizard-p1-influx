@@ -1,4 +1,4 @@
-version: "2"
+version: "3"
 services:
 
   # Jaeger
@@ -19,3 +19,17 @@ services:
       - "4317:4317"   # OTLP gRPC receiver
     depends_on:
       - jaeger-all-in-one
+  influxdb:
+    image: influxdb:2.7-alpine
+    ports:
+      - "8086:8086" 
+    volumes:
+      - myInfluxVolume:/var/lib/influxdb2
+
+  grafana:
+    image: grafana/grafana-oss:9.5.1
+    ports:
+      - 3000:3000
+
+volumes:
+  myInfluxVolume:

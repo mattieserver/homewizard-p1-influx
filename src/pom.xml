@@ -61,7 +61,7 @@
     </dependency>
     <dependency>
       <groupId>com.influxdb</groupId>
-      <artifactId>influxdb-client-java</artifactId>
+      <artifactId>influxdb-client-reactive</artifactId>
       <version>${influxdbClient.version}</version>
     </dependency>
     <dependency>
