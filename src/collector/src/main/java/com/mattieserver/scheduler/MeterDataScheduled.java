@@ -11,6 +11,7 @@ import com.mattieserver.rest.client.MeterDataService;
 import com.mattieserver.dto.mapper.MeterDataMapper;
 import com.mattieserver.influxdb.InfluxWriter;
 import com.mattieserver.dto.dto.MeterDataDto;
+import com.mattieserver.dto.dto.MeterDataState;
 
 import io.quarkus.scheduler.Scheduled;
 import org.jboss.logging.Logger;
@@ -29,9 +30,13 @@ public class MeterDataScheduled {
     @Inject 
     InfluxWriter influxWriter;
 
+    @Inject
+    MeterDataState meterDataState;
+
     @Scheduled(every="1s")     
     void increment() {
         MeterDataDto meterDdata =  meterDataService.getMeterDataAsync().map(meterDataMapper::toResource).await().atMost(Duration.ofSeconds(1));
+        meterDataState.setMeterDataDto(meterDdata);
         LOG.info(meterDdata.active_power_w);
         influxWriter.WriteToInflux(meterDdata);
     }
