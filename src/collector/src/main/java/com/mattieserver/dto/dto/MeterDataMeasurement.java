@@ -22,14 +22,14 @@ public class MeterDataMeasurement {
     @Column
     public float total_power_export_t2_kwh;
     @Column
-    public short active_power_w;
+    public int active_power_w;
     @Column
-    public short active_power_l1_w;
+    public int active_power_l1_w;
     @Column
     public float active_voltage_l1_v;
     @Column
     public float active_current_l1_a;
 
     @Column(timestamp = true)
-    Instant time = Instant.now();
+    public Instant time = Instant.now();
 }

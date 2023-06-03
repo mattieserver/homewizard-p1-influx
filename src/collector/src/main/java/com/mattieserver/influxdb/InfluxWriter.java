@@ -9,9 +9,10 @@ import com.influxdb.client.domain.WritePrecision;
 import com.influxdb.client.reactive.InfluxDBClientReactive;
 import com.influxdb.client.reactive.InfluxDBClientReactiveFactory;
 import com.influxdb.client.reactive.WriteReactiveApi;
-import com.mattieserver.dto.dto.MeterDataDto;
+
 import com.mattieserver.dto.dto.MeterDataMeasurement;
 import com.mattieserver.dto.mapper.MeterDataMapper;
+import com.mattieserver.rest.client.MeterData;
 
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -61,7 +62,7 @@ public class InfluxWriter {
         this.WriteApi = this.InfluxDBClient.getWriteReactiveApi();
     }
 
-    public void WriteToInflux(MeterDataDto meterDdata) {
+    public void WriteToInflux(MeterData meterDdata) {
         MeterDataMeasurement data = meterDataMapper.toMeasurement(meterDdata);
         Publisher<WriteReactiveApi.Success> publisher = WriteApi.writeMeasurement(WritePrecision.NS, data);
         Disposable subscriber = Flowable.fromPublisher(publisher)

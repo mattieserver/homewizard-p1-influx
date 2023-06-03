@@ -14,15 +14,5 @@ public class MeterDataDto {
     public short active_power_l1_w;
     public float active_voltage_l1_v;
     public float active_current_l1_a;
-    public Instant timestamp;
-
-    public MeterDataDto() {
-        super();
-        timestamp = Instant.now();
-    }
-
-    public MeterDataDto(Instant set_instant) {
-        super();
-        timestamp = set_instant;
-    }
+    public Instant time;
 }

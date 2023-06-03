@@ -13,7 +13,7 @@
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
     <quarkus.platform.version>3.1.0.Final</quarkus.platform.version>
-    <influxdbClient.version>6.8.0</influxdbClient.version>
+    <influxdbClient.version>6.9.0</influxdbClient.version>
     <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
     <skipITs>true</skipITs>
     <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
@@ -62,6 +62,11 @@
     <dependency>
       <groupId>com.influxdb</groupId>
       <artifactId>influxdb-client-reactive</artifactId>
+      <version>${influxdbClient.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.influxdb</groupId>
+      <artifactId>flux-dsl</artifactId>
       <version>${influxdbClient.version}</version>
     </dependency>
     <dependency>

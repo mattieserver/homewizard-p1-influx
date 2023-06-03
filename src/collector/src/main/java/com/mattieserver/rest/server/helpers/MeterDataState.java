@@ -1,4 +1,6 @@
-package com.mattieserver.dto.dto;
+package com.mattieserver.rest.server.helpers;
+
+import com.mattieserver.dto.dto.MeterDataDto;
 
 import jakarta.enterprise.context.ApplicationScoped;
 

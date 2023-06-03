@@ -1,6 +1,6 @@
 ```Flux
 from(bucket: "P1")
-  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+  |> range(start: -1h, stop: v.timeRangeStop)
   |> filter(fn: (r) => r["_measurement"] == "meterdata")
   |> filter(fn: (r) => r["_field"] == "active_power_l1_w")
   |> toInt()
