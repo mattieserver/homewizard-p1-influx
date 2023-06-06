@@ -89,7 +89,6 @@ public class InfluxReader {
         Publisher<MeterDataMeasurement> query = this.ReaderApi.query(flux.toString(), MeterDataMeasurement.class);
 
         Flowable.fromPublisher(query)
-                .take(10)
                 .subscribe(meterdata -> {
                     results.add(meterdata);
                 });

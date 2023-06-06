@@ -12,6 +12,7 @@ import org.eclipse.microprofile.rest.client.inject.RestClient;
 import com.mattieserver.dto.mapper.MeterDataMapper;
 import com.mattieserver.dto.dto.MeterDataMeasurement;
 import com.mattieserver.dto.dto.MeterDataDto;
+import com.mattieserver.dto.dto.MeterDataActivePowerDto;
 import com.mattieserver.rest.server.helpers.MeterDataState;
 import com.mattieserver.influxdb.InfluxReader;
 
@@ -39,8 +40,8 @@ public class MeterDataResource {
 
     @GET
     @Path("/1h-data/")
-    public List<MeterDataDto> getLastHour() {
+    public List<MeterDataActivePowerDto> getLastHour() {
         List<MeterDataMeasurement> lasthourmeasurement = influxReader.ReadLastHourFromInflux();
-        return meterDataMapper.toResourceFromMeasurementList(lasthourmeasurement);
+        return meterDataMapper.toActivePowerDtoFromMeasurementList(lasthourmeasurement);
     }    
 }
