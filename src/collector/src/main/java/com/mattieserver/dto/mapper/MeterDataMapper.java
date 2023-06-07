@@ -12,11 +12,16 @@ import java.util.List;
 
 @Mapper(componentModel = "cdi")
 public interface MeterDataMapper {
+    @Mapping(target = "time", ignore = true)
     MeterDataDto toResource(MeterData data);
        
     MeterDataMeasurement toMeasurementFromDto(MeterDataDto data);
+
+    @Mapping(target = "time", ignore = true)
     MeterDataMeasurement toMeasurement(MeterData data);
 
     List<MeterDataDto> toResourceFromMeasurementList(List<MeterDataMeasurement> measurement);
+    
+    @Mapping(target = "epochValue", ignore = true)
     List<MeterDataActivePowerDto> toActivePowerDtoFromMeasurementList(List<MeterDataMeasurement> data);
 }

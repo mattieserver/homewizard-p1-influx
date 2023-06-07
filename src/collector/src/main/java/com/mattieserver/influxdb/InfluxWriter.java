@@ -56,15 +56,15 @@ public class InfluxWriter {
         }
 
         char[] real_token = this.InfluxToken.toCharArray();
-        this.InfluxDBClient = InfluxDBClientReactiveFactory.create("http://localhost:8086", real_token, this.InfluxOrg, this.InfluxBucket);
+        this.InfluxDBClient = InfluxDBClientReactiveFactory.create("http://" + this.InfluxHost + ":8086", real_token, this.InfluxOrg, this.InfluxBucket);
         LOG.info("influxDBClient");
         
         this.WriteApi = this.InfluxDBClient.getWriteReactiveApi();
     }
 
     public void WriteToInflux(MeterData meterDdata) {
-        MeterDataMeasurement data = meterDataMapper.toMeasurement(meterDdata);
-        Publisher<WriteReactiveApi.Success> publisher = WriteApi.writeMeasurement(WritePrecision.NS, data);
+        MeterDataMeasurement dataMeasurement = meterDataMapper.toMeasurement(meterDdata);
+        Publisher<WriteReactiveApi.Success> publisher = WriteApi.writeMeasurement(WritePrecision.NS, dataMeasurement);
         Disposable subscriber = Flowable.fromPublisher(publisher)
                 .subscribe(success -> LOG.info("Write P1 data to DB"));
     }

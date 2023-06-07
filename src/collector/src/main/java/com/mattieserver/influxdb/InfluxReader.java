@@ -62,7 +62,7 @@ public class InfluxReader {
         }
 
         char[] real_token = this.InfluxToken.toCharArray();
-        this.InfluxDBClient = InfluxDBClientReactiveFactory.create("http://localhost:8086", real_token, this.InfluxOrg, this.InfluxBucket);
+        this.InfluxDBClient = InfluxDBClientReactiveFactory.create("http://" + this.InfluxHost + ":8086", real_token, this.InfluxOrg, this.InfluxBucket);
         LOG.info("Created reader influxDBClient");
         
         this.ReaderApi = this.InfluxDBClient.getQueryReactiveApi();
