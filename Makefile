@@ -1,14 +1,14 @@
-_BUILD_ARGS_TAG ?= latest
-_BUILD_ARGS_RELEASE_TAG ?= latest
-_BUILD_ARGS_DOCKERFILE ?= Dockerfile
+GIT_HASH ?= $(shell git log --format="%h" -n 1)
 
-_DOCKER_REPO ?= ghcr.io
+_BUILD_ARGS_TAG ?= ${GIT_HASH}
+_DOCKER_REPO ?= ghcr.io/mattieserver/homewizard-p1-influx
+
  
 _builder:
-	docker build --tag ${_DOCKER_REPO}/mattieserver/homewizard-p1-influx:collector-${_BUILD_ARGS_TAG} -f  src/collector/Dockerfile src/collector
+	docker build --tag ${_DOCKER_REPO}:collector-${_BUILD_ARGS_TAG} -f src/collector/Dockerfile src/collector
 
 _pusher:
-	docker push ${_DOCKER_REPO}/mattieserver/homewizard-p1-influx:collector-${_BUILD_ARGS_TAG}
+	docker push ${_DOCKER_REPO}:collector-${_BUILD_ARGS_TAG}
 
 
 
